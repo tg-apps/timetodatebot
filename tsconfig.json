@@ -1,19 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "esnext",
+    "module": "esnext",
     "moduleResolution": "bundler",
-    "esModuleInterop": true,
-    "lib": ["ESNext"],
-    "outDir": "./dist",
+    "moduleDetection": "force",
 
-    // import ~/.. syntax
     "baseUrl": ".",
     "paths": { "~/*": ["./src/*"] },
 
+    "skipLibCheck": true,
+
     // Max strictness
     "strict": true,
-    "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
@@ -24,7 +22,5 @@
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true
-  },
-
-  "include": ["src/**/*.ts"]
+  }
 }
