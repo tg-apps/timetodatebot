@@ -1,14 +1,12 @@
 import type { CommandContext, Context } from "grammy";
 
-import { integer, tuple, union } from "~/schemas";
-
 import { eq } from "drizzle-orm";
+
 import { db } from "~/db";
 import { users as usersTable } from "~/db/schema";
-
 import { getArgsFromStringWithSchema } from "~/lib/getArgs";
-
 import { getTargetYear, getTimeUntilDate } from "~/lib/utils";
+import { integer, tuple, union } from "~/schemas";
 
 async function getUserBirthday(userId: number) {
   const result = await db

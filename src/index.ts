@@ -1,5 +1,5 @@
-import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
+import { Bot } from "grammy";
 
 import * as handler from "./handlers";
 

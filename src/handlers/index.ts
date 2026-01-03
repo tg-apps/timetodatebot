@@ -1,7 +1,6 @@
 import type { CommandContext, Context } from "grammy";
 
 import { HELP_MESSAGE } from "~/constants";
-
 import { getTimeUntilDate } from "~/lib/utils";
 
 async function handle_start(context: CommandContext<Context>) {
