@@ -21,7 +21,7 @@ async function getUserBirthday(userId: number) {
 
 async function setUserBirthday(
   userId: number,
-  date: { day: number; month: number }
+  date: { day: number; month: number },
 ) {
   await db
     .insert(usersTable)
@@ -40,7 +40,7 @@ function formatDate(date: { day: number; month: number }) {
 
 async function getBirthdayResponseFromContext(
   context: CommandContext<Context>,
-  { userId }: { userId: number }
+  { userId }: { userId: number },
 ) {
   const args = getArgsFromStringWithSchema({
     schema: union([tuple([]), tuple([integer, integer])]),
