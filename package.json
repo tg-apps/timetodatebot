@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "bun test",
     "format": "oxfmt --list-different || oxfmt",
     "dev": "NODE_ENV=development bun run ./src/index.ts",
     "build": "NODE_ENV=production bun build --minify --compile ./src/index.ts --outfile=dist/bot",

@@ -8,6 +8,30 @@ function getTargetYear({ day, month }: { day: number; month: number }): number {
     : currentYear;
 }
 
+function getPluralForm(
+  number: number,
+  forms: [string, string, string],
+): string {
+  const absNumber = Math.abs(number);
+  const lastTwoDigits = absNumber % 100;
+  const lastDigit = absNumber % 10;
+
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+    return forms[2]; // genitive plural
+  }
+
+  switch (lastDigit) {
+    case 1:
+      return forms[0]; // nominative singular
+    case 2:
+    case 3:
+    case 4:
+      return forms[1]; // genitive singular
+    default:
+      return forms[2]; // genitive plural
+  }
+}
+
 function getTimeDifference({
   day,
   month,
@@ -93,16 +117,16 @@ function formatOutput({
 
   const output =
     `${label}\n\n` +
-    `\`${weeks}\` недель\n` +
-    `\`${days}\` дней\n` +
-    `\`${hours}\` часов\n` +
-    `\`${minutes}\` минут\n` +
-    `\`${seconds}\` секунд\n\n` +
-    `\`${weeksTotal}\` недель\n` +
-    `\`${daysTotal}\` дней\n` +
-    `\`${hoursTotal}\` часов\n` +
-    `\`${minutesTotal}\` минут\n` +
-    `\`${intSeconds}\` секунд`;
+    `\`${weeks}\` ${getPluralForm(weeks, ["неделя", "недели", "недель"])}\n` +
+    `\`${days}\` ${getPluralForm(days, ["день", "дня", "дней"])}\n` +
+    `\`${hours}\` ${getPluralForm(hours, ["час", "часа", "часов"])}\n` +
+    `\`${minutes}\` ${getPluralForm(minutes, ["минута", "минуты", "минут"])}\n` +
+    `\`${seconds}\` ${getPluralForm(seconds, ["секунда", "секунды", "секунд"])}\n\n` +
+    `\`${weeksTotal}\` ${getPluralForm(Math.floor(parseFloat(weeksTotal)), ["неделя", "недели", "недель"])}\n` +
+    `\`${daysTotal}\` ${getPluralForm(Math.floor(parseFloat(daysTotal)), ["день", "дня", "дней"])}\n` +
+    `\`${hoursTotal}\` ${getPluralForm(Math.floor(parseFloat(hoursTotal)), ["час", "часа", "часов"])}\n` +
+    `\`${minutesTotal}\` ${getPluralForm(Math.floor(parseFloat(minutesTotal)), ["минута", "минуты", "минут"])}\n` +
+    `\`${intSeconds}\` ${getPluralForm(intSeconds, ["секунда", "секунды", "секунд"])}`;
 
   if (isPast) {
     return output + "\n\nназад";
@@ -140,4 +164,4 @@ function getTimeUntilDate({
   });
 }
 
-export { getTimeUntilDate, getTargetYear };
+export { getTimeUntilDate, getTargetYear, getPluralForm };
