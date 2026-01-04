@@ -6,10 +6,7 @@
     "test": "bun test",
     "format": "oxfmt --list-different || oxfmt",
     "dev": "NODE_ENV=development bun run ./src/index.ts",
-    "build": "NODE_ENV=production bun build --minify --compile ./src/index.ts --outfile=dist/bot",
-    "build:linux": "bun run build --target=bun-linux-arm64",
-    "build:windows": "bun run build --target=bun-windows-x64",
-    "start": "./dist/bot"
+    "build": "NODE_ENV=production bun build --minify --compile ./src/index.ts --outfile=dist/bot --target=bun-linux-arm64"
   },
   "dependencies": {
     "@grammyjs/runner": "^2.0.3",

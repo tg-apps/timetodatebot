@@ -26,13 +26,6 @@ bun run dev
 
 # Production build
 bun run build
-
-# Cross-platform builds
-bun run build:linux
-bun run build:windows
-
-# Run production binary
-bun run start
 ```
 
 ### Code Quality
@@ -137,7 +130,6 @@ src/
 2. **Formatting**: Run `bun run format` before committing
 3. **Testing**: Run `bun run test` to ensure all tests pass
 4. **Building**: Use `bun run build` for production builds
-5. **Deployment**: Deploy the `dist/bot` binary
 
 ## Key Dependencies
 
