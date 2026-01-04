@@ -36,13 +36,13 @@ function formatDate(date: { day: number; month: number }) {
   return `${formattedDay}.${formattedMonth}`;
 }
 
-async function getBirthdayResponseFromContext(
-  context: CommandContext<Context>,
+async function getBirthdayResponseFromInput(
+  input: string,
   { userId }: { userId: number },
 ) {
   const args = getArgsFromStringWithSchema({
     schema: union([tuple([]), tuple([integer, integer])]),
-    input: context.match,
+    input,
   });
 
   if (!args.success) {
@@ -68,6 +68,8 @@ async function getBirthdayResponseFromContext(
 
 export async function handle_birthday(context: CommandContext<Context>) {
   const userId = context.from!.id;
-  const response = await getBirthdayResponseFromContext(context, { userId });
+  const response = await getBirthdayResponseFromInput(context.match, {
+    userId,
+  });
   await context.reply(response, { parse_mode: "MarkdownV2" });
 }
