@@ -38,13 +38,21 @@ bun run start
 ### Code Quality
 
 ```bash
-# Format code (runs check then formats if needed)
+# Format code
 bun run format
 ```
 
 ### Testing
 
-⚠️ **No testing framework is currently configured**. This project lacks test infrastructure. Consider adding a testing framework like Jest or Vitest.
+```bash
+# Run all tests
+bun run test
+
+# Run specific test file
+bun test tests/pluralization.test.ts
+```
+
+**Test Framework**: Bun's builtin test runner is configured for this project. Test files are located in the `/tests/` directory and use `.test.ts` extension.
 
 ## Code Style Guidelines
 
@@ -127,7 +135,7 @@ src/
 
 1. **Code Changes**: Make changes following the style guidelines above
 2. **Formatting**: Run `bun run format` before committing
-3. **Testing**: Currently no automated tests - manual testing required
+3. **Testing**: Run `bun run test` to ensure all tests pass
 4. **Building**: Use `bun run build` for production builds
 5. **Deployment**: Deploy the `dist/bot` binary
 
@@ -149,7 +157,7 @@ src/
 ## Notes for Agents
 
 - This is a Russian-language bot - maintain language consistency
-- No current test coverage - consider adding tests for new features
+- Test coverage is available for core functionality - add tests for new features
 - Database migrations should be handled carefully (SQLite)
 - The bot uses Telegram's MarkdownV2 format which requires escaping special characters
 - All user data is stored locally in SQLite database file `database.db`
