@@ -36,3 +36,4 @@ export {
 
 export { handle_birthday } from "./birthday";
 export { handle_date } from "./date";
+export { handle_customdate } from "./customdate";

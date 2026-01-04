@@ -18,6 +18,7 @@ bot.command("christmas", handler.handle_christmas);
 bot.command(["summer", "leto"], handler.handle_summer);
 bot.command(["birthday", "dr"], handler.handle_birthday);
 bot.command("date", handler.handle_date);
+bot.command("customdate", handler.handle_customdate);
 
 bot.on("::bot_command", async (context) => {
   if (context.chat.type !== "private") return;
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV === "production") {
     { command: "newyear", description: "Новый год" },
     { command: "birthday", description: "День рождения" },
     { command: "date", description: "Любая дата" },
+    { command: "customdate", description: "Создать дату" },
   ]);
 }
 

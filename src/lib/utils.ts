@@ -143,7 +143,7 @@ function getTimeUntilDate({
 }: {
   day: number;
   month: number;
-  year?: number;
+  year?: number | null;
   text?: string;
 }): string {
   year = year || getTargetYear({ day, month });

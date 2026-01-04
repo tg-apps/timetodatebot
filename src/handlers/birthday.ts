@@ -12,7 +12,7 @@ async function getUserBirthday(userId: number) {
   const result = await db
     .select({ day: usersTable.day, month: usersTable.month })
     .from(usersTable)
-    .where(eq(usersTable.user_id, userId));
+    .where(eq(usersTable.userId, userId));
 
   return result[0] ?? null;
 }
@@ -23,9 +23,9 @@ async function setUserBirthday(
 ) {
   await db
     .insert(usersTable)
-    .values({ user_id: userId, ...date })
+    .values({ userId, ...date })
     .onConflictDoUpdate({
-      target: usersTable.user_id,
+      target: usersTable.userId,
       set: date,
     });
 }

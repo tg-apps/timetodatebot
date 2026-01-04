@@ -6,6 +6,7 @@ const COMMAND_LIST = `\
 /birthday - День рождения
 
 /date - Любая дата
+/customdate - Создать дату
 
 /help - Помощь
 ` as const;
