@@ -122,10 +122,10 @@ function formatOutput({
     `\`${hours}\` ${getPluralForm(hours, ["час", "часа", "часов"])}\n` +
     `\`${minutes}\` ${getPluralForm(minutes, ["минута", "минуты", "минут"])}\n` +
     `\`${seconds}\` ${getPluralForm(seconds, ["секунда", "секунды", "секунд"])}\n\n` +
-    `\`${weeksTotal}\` ${getPluralForm(Math.floor(parseFloat(weeksTotal)), ["неделя", "недели", "недель"])}\n` +
-    `\`${daysTotal}\` ${getPluralForm(Math.floor(parseFloat(daysTotal)), ["день", "дня", "дней"])}\n` +
-    `\`${hoursTotal}\` ${getPluralForm(Math.floor(parseFloat(hoursTotal)), ["час", "часа", "часов"])}\n` +
-    `\`${minutesTotal}\` ${getPluralForm(Math.floor(parseFloat(minutesTotal)), ["минута", "минуты", "минут"])}\n` +
+    `\`${weeksTotal}\` недель\n` +
+    `\`${daysTotal}\` дней\n` +
+    `\`${hoursTotal}\` часов\n` +
+    `\`${minutesTotal}\` минут\n` +
     `\`${intSeconds}\` ${getPluralForm(intSeconds, ["секунда", "секунды", "секунд"])}`;
 
   if (isPast) {
