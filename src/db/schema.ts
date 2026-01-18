@@ -1,4 +1,4 @@
-import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
+import { sqliteTable, integer } from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("users", {
   userId: integer("user_id").notNull().unique(),
@@ -7,11 +7,9 @@ export const users = sqliteTable("users", {
 });
 
 export const customDates = sqliteTable("custom_dates", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
   userId: integer("user_id")
-    .notNull()
+    .primaryKey()
     .references(() => users.userId),
-  name: text("name").notNull(),
   day: integer("day").notNull(),
   month: integer("month").notNull(),
   year: integer("year"),

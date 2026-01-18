@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { integer, string } from "~/schemas";
+import { integer, string, union } from "~/schemas";
 
 function parseArgs(input: string) {
   const trimmedInput = input.trim();
@@ -21,7 +21,7 @@ function getArgsFromStringWithSchema<TSchema extends z.ZodType>({
 }
 
 function getArgsFromString(input: string) {
-  const schema = z.array(z.union([integer, string]));
+  const schema = z.array(union([integer, string]));
   const args = parseArgs(input);
   return schema.safeParse(args);
 }

@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
     { command: "newyear", description: "Новый год" },
     { command: "birthday", description: "День рождения" },
     { command: "date", description: "Любая дата" },
-    { command: "customdate", description: "Создать дату" },
+    { command: "customdate", description: "Установить свою дату" },
   ]);
 }
 
