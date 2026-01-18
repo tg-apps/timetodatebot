@@ -8,7 +8,7 @@ import { getArgsFromStringWithSchema } from "~/lib/getArgs";
 import { getTimeUntilDate } from "~/lib/utils";
 import { integer, string, tuple, union } from "~/schemas";
 
-export async function handleCustomDateCommand(
+async function handleCustomDateCommand(
   eventName: string,
   context: Context,
 ) {
