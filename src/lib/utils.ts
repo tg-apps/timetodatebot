@@ -143,23 +143,16 @@ function getTimeUntilDate({
 }: {
   day: number;
   month: number;
-  year?: number;
+  year?: number | null;
   text?: string;
 }): string {
   year = year || getTargetYear({ day, month });
-  const { isPast, weeks, days, hours, minutes, seconds, totalSeconds } =
-    getTimeDifference({ day, month, year });
+  const timeDifference = getTimeDifference({ day, month, year });
   return formatOutput({
     day,
     month,
     year,
-    isPast,
-    weeks,
-    days,
-    hours,
-    minutes,
-    seconds,
-    totalSeconds,
+    ...timeDifference,
     text,
   });
 }

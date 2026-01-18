@@ -4,13 +4,13 @@ import { getArgsFromStringWithSchema } from "~/lib/getArgs";
 import { getTimeUntilDate } from "~/lib/utils";
 import { integer, tuple, union } from "~/schemas";
 
-function getDateResponseFromContext(context: CommandContext<Context>) {
+function getDateResponseFromContext(input: string) {
   const args = getArgsFromStringWithSchema({
     schema: union([
       tuple([integer, integer]),
       tuple([integer, integer, integer]),
     ]),
-    input: context.match,
+    input,
   });
   if (!args.success) {
     return "Пример использования команды\n`/date 31 12`";
@@ -21,6 +21,6 @@ function getDateResponseFromContext(context: CommandContext<Context>) {
 }
 
 export async function handle_date(context: CommandContext<Context>) {
-  const response = getDateResponseFromContext(context);
+  const response = getDateResponseFromContext(context.match);
   await context.reply(response, { parse_mode: "MarkdownV2" });
 }
