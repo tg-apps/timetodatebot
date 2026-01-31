@@ -1,4 +1,5 @@
 import type { CommandContext, Context } from "grammy";
+import type { User } from "grammy/types";
 
 import { eq } from "drizzle-orm";
 
@@ -70,8 +71,10 @@ async function getCustomDateResponseFromContext(userId: number, input: string) {
   return `Дата установлена на \`${formattedDate}\``;
 }
 
-export async function handle_customdate(context: CommandContext<Context>) {
-  const userId = context.from!.id;
+export async function handle_customdate(
+  context: CommandContext<Context> & { from: User },
+) {
+  const userId = context.from.id;
 
   const response = await getCustomDateResponseFromContext(
     userId,

@@ -1,4 +1,5 @@
 import type { CommandContext, Context } from "grammy";
+import type { User } from "grammy/types";
 
 import { eq } from "drizzle-orm";
 
@@ -66,8 +67,10 @@ async function getBirthdayResponseFromInput(
   return getTimeUntilDate({ day, month, year, text: "твоего дня рождения" });
 }
 
-export async function handle_birthday(context: CommandContext<Context>) {
-  const userId = context.from!.id;
+export async function handle_birthday(
+  context: CommandContext<Context> & { from: User },
+) {
+  const userId = context.from.id;
   const response = await getBirthdayResponseFromInput(context.match, {
     userId,
   });
