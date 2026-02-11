@@ -29,7 +29,7 @@ bot.on("::bot_command", async (context) => {
 });
 
 if (process.env.NODE_ENV === "production") {
-  bot.api.setMyCommands([
+  void bot.api.setMyCommands([
     { command: "help", description: "Помощь" },
     { command: "summer", description: "Лето" },
     { command: "christmas", description: "Рождество" },
