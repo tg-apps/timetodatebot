@@ -1,4 +1,4 @@
-import * as z from "zod/mini";
+import type * as z from "minizod";
 
 function parseArgs(input: string) {
   const trimmedInput = input.trim();

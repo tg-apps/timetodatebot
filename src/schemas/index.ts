@@ -1,4 +1,4 @@
-import * as z from "zod/mini";
+import * as z from "minizod";
 
 const string = z.string();
 const integer = z.pipe(z.coerce.number(), z.int());

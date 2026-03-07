@@ -1,6 +1,10 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "ignorePatterns": ["tests/**"],
+  "options": {
+    "typeAware": true,
+    "typeCheck": true
+  },
   "rules": {
     "typescript/no-floating-promises": "error"
   }
