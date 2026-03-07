@@ -1,7 +1,7 @@
 import type { CommandContext, Context } from "grammy";
 
-import { HELP_MESSAGE } from "~/constants";
-import { getTimeUntilDate } from "~/lib/utils";
+import { HELP_MESSAGE } from "#constants";
+import { getTimeUntilDate } from "#utils";
 
 async function handle_start(context: CommandContext<Context>) {
   await context.reply(HELP_MESSAGE, { parse_mode: "MarkdownV2" });

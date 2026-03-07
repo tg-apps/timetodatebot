@@ -1,7 +1,7 @@
-import z from "zod";
+import * as z from "zod/mini";
 
 const string = z.string();
-const integer = z.coerce.number().int();
+const integer = z.pipe(z.coerce.number(), z.int());
 const tuple = z.tuple;
 const union = z.union;
 

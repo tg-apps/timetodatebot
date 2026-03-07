@@ -1,8 +1,8 @@
 import type { CommandContext, Context } from "grammy";
 
-import { getArgsFromStringWithSchema } from "~/lib/getArgs";
-import { getTimeUntilDate } from "~/lib/utils";
-import { integer, tuple, union } from "~/schemas";
+import { getArgsFromStringWithSchema } from "#lib/get-args";
+import { integer, tuple, union } from "#schemas";
+import { getTimeUntilDate } from "#utils";
 
 function getDateResponseFromContext(input: string) {
   const args = getArgsFromStringWithSchema({

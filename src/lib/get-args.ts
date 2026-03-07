@@ -1,4 +1,4 @@
-import { z } from "zod";
+import * as z from "zod/mini";
 
 function parseArgs(input: string) {
   const trimmedInput = input.trim();
@@ -7,7 +7,7 @@ function parseArgs(input: string) {
   return args;
 }
 
-function getArgsFromStringWithSchema<TSchema extends z.ZodType>({
+function getArgsFromStringWithSchema<TSchema extends z.ZodMiniType>({
   schema,
   input,
 }: {

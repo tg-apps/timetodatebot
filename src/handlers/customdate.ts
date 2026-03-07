@@ -1,13 +1,12 @@
+import { eq } from "drizzle-orm";
 import type { CommandContext, Context } from "grammy";
 import type { User } from "grammy/types";
 
-import { eq } from "drizzle-orm";
-
-import { db } from "~/db";
-import { customDates } from "~/db/schema";
-import { getArgsFromStringWithSchema } from "~/lib/getArgs";
-import { getTimeUntilDate } from "~/lib/utils";
-import { integer, tuple, union } from "~/schemas";
+import { db } from "#db";
+import { customDates } from "#db/schema";
+import { getArgsFromStringWithSchema } from "#lib/get-args";
+import { integer, tuple, union } from "#schemas";
+import { getTimeUntilDate } from "#utils";
 
 async function handleCustomDateCommand(userId: number) {
   const date = await db
