@@ -1,4 +1,3 @@
-import { eq } from "drizzle-orm";
 import type { CommandContext, Context } from "grammy";
 import type { User } from "grammy/types";
 
@@ -9,11 +8,9 @@ import { integer, tuple, union } from "#schemas";
 import { getTimeUntilDate } from "#utils";
 
 async function handleCustomDateCommand(userId: number) {
-  const date = await db
-    .select()
-    .from(customDates)
-    .where(eq(customDates.userId, userId))
-    .then((events) => events[0]);
+  const date = await db.query.customDates.findFirst({
+    where: (customDates, { eq }) => eq(customDates.userId, userId),
+  });
 
   if (!date) {
     return "Дата не установлена\nУстанови её командой `/customdate 31 12` или `/customdate 31 12 2030`";

@@ -1,4 +1,3 @@
-import { eq } from "drizzle-orm";
 import type { CommandContext, Context } from "grammy";
 import type { User } from "grammy/types";
 
@@ -9,12 +8,11 @@ import { integer, tuple, union } from "#schemas";
 import { getTargetYear, getTimeUntilDate } from "#utils";
 
 async function getUserBirthday(userId: number) {
-  const result = await db
-    .select({ day: usersTable.day, month: usersTable.month })
-    .from(usersTable)
-    .where(eq(usersTable.userId, userId));
+  const result = await db.query.users.findFirst({
+    where: (users, { eq }) => eq(users.userId, userId),
+  });
 
-  return result[0] ?? null;
+  return result ?? null;
 }
 
 async function setUserBirthday(

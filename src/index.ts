@@ -28,17 +28,15 @@ bot.on("::bot_command", async (context) => {
   await context.reply(response);
 });
 
-if (process.env.NODE_ENV === "production") {
-  void bot.api.setMyCommands([
-    { command: "help", description: "Помощь" },
-    { command: "summer", description: "Лето" },
-    { command: "christmas", description: "Рождество" },
-    { command: "newyear", description: "Новый год" },
-    { command: "birthday", description: "День рождения" },
-    { command: "date", description: "Любая дата" },
-    { command: "customdate", description: "Установить свою дату" },
-  ]);
-}
+void bot.api.setMyCommands([
+  { command: "help", description: "Помощь" },
+  { command: "summer", description: "Лето" },
+  { command: "christmas", description: "Рождество" },
+  { command: "newyear", description: "Новый год" },
+  { command: "birthday", description: "День рождения" },
+  { command: "date", description: "Любая дата" },
+  { command: "customdate", description: "Установить свою дату" },
+]);
 
 const runner = run(bot);
 
