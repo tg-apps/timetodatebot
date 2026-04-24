@@ -39,7 +39,10 @@ async function upsertCustomDate(
     });
 }
 
-async function getCustomDateResponseFromContext(userId: number, input: string) {
+export async function getCustomDateResponseFromContext(
+  userId: number,
+  input: string,
+) {
   const args = getArgsFromStringWithSchema({
     schema: union([
       tuple([]),
