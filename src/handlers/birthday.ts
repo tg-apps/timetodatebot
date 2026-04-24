@@ -34,7 +34,7 @@ function formatDate(date: { day: number; month: number }) {
   return `${formattedDay}.${formattedMonth}`;
 }
 
-export async function getBirthdayResponseFromInput(
+async function getBirthdayResponseFromInput(
   input: string,
   { userId }: { userId: number },
 ) {
