@@ -1,8 +1,16 @@
-function getTargetYear({ day, month }: { day: number; month: number }): number {
-  const today = new Date();
-  const currentYear = today.getFullYear();
-  const currentMonth = today.getMonth() + 1; // JS months are 0-indexed
-  const currentDay = today.getDate();
+function getTargetYear({
+  day,
+  month,
+  now,
+}: {
+  day: number;
+  month: number;
+  now?: Date;
+}): number {
+  now ??= new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1; // JS months are 0-indexed
+  const currentDay = now.getDate();
   return currentMonth > month || (currentMonth === month && currentDay > day)
     ? currentYear + 1
     : currentYear;
@@ -30,13 +38,16 @@ function getTimeDifference({
   day,
   month,
   year,
+  now,
 }: {
   day: number;
   month: number;
   year: number;
+  now?: Date;
 }) {
+  now ??= new Date();
+
   const targetDate = new Date(year, month - 1, day); // JS months are 0-indexed
-  const now = new Date();
 
   const isPast = targetDate < now;
   const totalMs = Math.abs(now.getTime() - targetDate.getTime());
@@ -101,7 +112,7 @@ function formatOutput({
   function format(num: number): string {
     if (precision < 0) return num.toString();
     const str = num.toPrecision(precision + 1);
-    return str.replace(/\.?0+$/, ""); // Remove trailing zeros and decimal if no fraction
+    return str.replace(/\.0+$/, ""); // Remove trailing zeros and decimal if no fraction
   }
 
   const weeksTotal = format(totalSeconds / (7 * 24 * 60 * 60));
@@ -140,7 +151,8 @@ function getTimeUntilDate({
   year?: number | null;
   text?: string;
 }): string {
-  year ??= getTargetYear({ day, month });
+  const now = new Date();
+  year ??= getTargetYear({ day, month, now });
   const difference = getTimeDifference({ day, month, year });
   return formatOutput({ day, month, year, ...difference, text });
 }
