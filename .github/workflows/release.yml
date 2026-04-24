@@ -31,9 +31,6 @@ jobs:
       - name: Run tests
         run: bun run test
 
-      - name: Format code
-        run: bun run format
-
       - name: Build binary
         run: bun run build
 
