@@ -112,7 +112,7 @@ function formatOutput({
   function format(num: number): string {
     if (precision < 0) return num.toString();
     const str = num.toPrecision(precision + 1);
-    return str.replace(/\.?0+$/, ""); // Remove trailing zeros and decimal if no fraction
+    return str.replace(/\.0+$/, ""); // Remove trailing zeros and decimal if no fraction
   }
 
   const weeksTotal = format(totalSeconds / (7 * 24 * 60 * 60));
