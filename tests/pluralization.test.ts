@@ -4,7 +4,7 @@ import { getPluralForm } from "#utils";
 
 describe("getRussianPluralForm", () => {
   describe("hours forms", () => {
-    const hourForms: [string, string, string] = ["час", "часа", "часов"];
+    const hourForms = ["час", "часа", "часов"] as const;
 
     it("should use singular form for 1", () => {
       expect(getPluralForm(1, hourForms)).toBe("час");

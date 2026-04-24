@@ -8,27 +8,21 @@ function getTargetYear({ day, month }: { day: number; month: number }): number {
     : currentYear;
 }
 
+const pr = new Intl.PluralRules("ru-RU");
+
 function getPluralForm(
   number: number,
-  forms: [string, string, string],
+  forms: readonly [one: string, few: string, many: string],
 ): string {
-  const absNumber = Math.abs(number);
-  const lastTwoDigits = absNumber % 100;
-  const lastDigit = absNumber % 10;
+  const rule = pr.select(number);
 
-  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
-    return forms[2]; // genitive plural
-  }
-
-  switch (lastDigit) {
-    case 1:
-      return forms[0]; // nominative singular
-    case 2:
-    case 3:
-    case 4:
-      return forms[1]; // genitive singular
+  switch (rule) {
+    case "one":
+      return forms[0];
+    case "few":
+      return forms[1];
     default:
-      return forms[2]; // genitive plural
+      return forms[2];
   }
 }
 
@@ -97,7 +91,7 @@ function formatOutput({
     .toString()
     .padStart(2, "0")}.${year}`;
 
-  text = text || `\`${dateStr}\``;
+  text ??= `\`${dateStr}\``;
   const label = isPast ? `${text} наступило` : `До ${text} осталось`;
 
   const intSeconds = Math.floor(totalSeconds);
@@ -146,15 +140,9 @@ function getTimeUntilDate({
   year?: number | null;
   text?: string;
 }): string {
-  year = year || getTargetYear({ day, month });
-  const timeDifference = getTimeDifference({ day, month, year });
-  return formatOutput({
-    day,
-    month,
-    year,
-    ...timeDifference,
-    text,
-  });
+  year ??= getTargetYear({ day, month });
+  const difference = getTimeDifference({ day, month, year });
+  return formatOutput({ day, month, year, ...difference, text });
 }
 
 export { getTimeUntilDate, getTargetYear, getPluralForm };
