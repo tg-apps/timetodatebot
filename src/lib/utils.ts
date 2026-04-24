@@ -61,10 +61,10 @@ function formatOutput({
     return str.replace(/\.0+$/, ""); // Remove trailing zeros and decimal if no fraction
   }
 
-  const weeksTotal = format(totalSeconds / (7 * 24 * 60 * 60));
-  const daysTotal = format(totalSeconds / (24 * 60 * 60));
-  const hoursTotal = format(totalSeconds / (60 * 60));
-  const minutesTotal = format(totalSeconds / 60);
+  const weeksTotal = totalSeconds / (7 * 24 * 60 * 60);
+  const daysTotal = totalSeconds / (24 * 60 * 60);
+  const hoursTotal = totalSeconds / (60 * 60);
+  const minutesTotal = totalSeconds / 60;
 
   const output =
     `${label}\n\n` +
@@ -73,10 +73,10 @@ function formatOutput({
     `\`${hours}\` ${getPluralForm(hours, ["час", "часа", "часов"])}\n` +
     `\`${minutes}\` ${getPluralForm(minutes, ["минута", "минуты", "минут"])}\n` +
     `\`${seconds}\` ${getPluralForm(seconds, ["секунда", "секунды", "секунд"])}\n\n` +
-    `\`${weeksTotal}\` недель\n` +
-    `\`${daysTotal}\` дней\n` +
-    `\`${hoursTotal}\` часов\n` +
-    `\`${minutesTotal}\` минут\n` +
+    `\`${format(weeksTotal)}\` ${getPluralForm(weeksTotal, ["неделя", "недели", "недель"])}\n` +
+    `\`${format(daysTotal)}\` ${getPluralForm(daysTotal, ["день", "дня", "дней"])}\n` +
+    `\`${format(hoursTotal)}\` ${getPluralForm(hoursTotal, ["час", "часа", "часов"])}\n` +
+    `\`${format(minutesTotal)}\` ${getPluralForm(minutesTotal, ["минута", "минуты", "минут"])}\n` +
     `\`${intSeconds}\` ${getPluralForm(intSeconds, ["секунда", "секунды", "секунд"])}`;
 
   if (isPast) {
