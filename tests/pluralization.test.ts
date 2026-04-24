@@ -1,6 +1,6 @@
 import { describe, it, expect } from "bun:test";
 
-import { getPluralForm } from "#utils";
+import { getPluralForm } from "#lib/get-plural-form";
 
 describe("getRussianPluralForm", () => {
   describe("hours forms", () => {
