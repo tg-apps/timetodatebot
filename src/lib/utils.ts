@@ -1,3 +1,6 @@
+import { getPluralForm } from "./get-plural-form";
+import { getTimeDifference } from "./time-difference";
+
 function getTargetYear({
   day,
   month,
@@ -14,63 +17,6 @@ function getTargetYear({
   return currentMonth > month || (currentMonth === month && currentDay > day)
     ? currentYear + 1
     : currentYear;
-}
-
-const pr = new Intl.PluralRules("ru-RU");
-
-function getPluralForm(
-  number: number,
-  forms: readonly [one: string, few: string, many: string],
-): string {
-  const rule = pr.select(number);
-
-  switch (rule) {
-    case "one":
-      return forms[0];
-    case "few":
-      return forms[1];
-    default:
-      return forms[2];
-  }
-}
-
-function getTimeDifference({
-  day,
-  month,
-  year,
-  now,
-}: {
-  day: number;
-  month: number;
-  year: number;
-  now?: Date;
-}) {
-  now ??= new Date();
-
-  const targetDate = new Date(year, month - 1, day); // JS months are 0-indexed
-
-  const isPast = targetDate < now;
-  const totalMs = Math.abs(now.getTime() - targetDate.getTime());
-  const totalSeconds = totalMs / 1000;
-
-  const totalDays = Math.floor(totalSeconds / 86400);
-  const weeks = Math.floor(totalDays / 7);
-  const days = totalDays % 7;
-
-  const secondsInDay = totalSeconds % 86400;
-  const hours = Math.floor(secondsInDay / 3600);
-  const minutes = Math.floor((secondsInDay % 3600) / 60);
-  const seconds = Math.floor((secondsInDay % 3600) % 60);
-
-  return {
-    isPast,
-    weeks,
-    days,
-    hours,
-    minutes,
-    seconds,
-    totalSeconds,
-  } as const;
 }
 
 function formatOutput({
@@ -115,10 +61,10 @@ function formatOutput({
     return str.replace(/\.0+$/, ""); // Remove trailing zeros and decimal if no fraction
   }
 
-  const weeksTotal = format(totalSeconds / (7 * 24 * 60 * 60));
-  const daysTotal = format(totalSeconds / (24 * 60 * 60));
-  const hoursTotal = format(totalSeconds / (60 * 60));
-  const minutesTotal = format(totalSeconds / 60);
+  const weeksTotal = totalSeconds / (7 * 24 * 60 * 60);
+  const daysTotal = totalSeconds / (24 * 60 * 60);
+  const hoursTotal = totalSeconds / (60 * 60);
+  const minutesTotal = totalSeconds / 60;
 
   const output =
     `${label}\n\n` +
@@ -127,10 +73,10 @@ function formatOutput({
     `\`${hours}\` ${getPluralForm(hours, ["час", "часа", "часов"])}\n` +
     `\`${minutes}\` ${getPluralForm(minutes, ["минута", "минуты", "минут"])}\n` +
     `\`${seconds}\` ${getPluralForm(seconds, ["секунда", "секунды", "секунд"])}\n\n` +
-    `\`${weeksTotal}\` недель\n` +
-    `\`${daysTotal}\` дней\n` +
-    `\`${hoursTotal}\` часов\n` +
-    `\`${minutesTotal}\` минут\n` +
+    `\`${format(weeksTotal)}\` ${getPluralForm(weeksTotal, ["неделя", "недели", "недель"])}\n` +
+    `\`${format(daysTotal)}\` ${getPluralForm(daysTotal, ["день", "дня", "дней"])}\n` +
+    `\`${format(hoursTotal)}\` ${getPluralForm(hoursTotal, ["час", "часа", "часов"])}\n` +
+    `\`${format(minutesTotal)}\` ${getPluralForm(minutesTotal, ["минута", "минуты", "минут"])}\n` +
     `\`${intSeconds}\` ${getPluralForm(intSeconds, ["секунда", "секунды", "секунд"])}`;
 
   if (isPast) {
@@ -157,4 +103,4 @@ function getTimeUntilDate({
   return formatOutput({ day, month, year, ...difference, text });
 }
 
-export { getTimeUntilDate, getTargetYear, getPluralForm, getTimeDifference };
+export { getTimeUntilDate, getTargetYear };

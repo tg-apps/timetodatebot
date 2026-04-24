@@ -1,8 +1,8 @@
 import { describe, it, expect } from "bun:test";
 
-import { getPluralForm } from "#utils";
+import { getPluralForm } from "#lib/get-plural-form";
 
-describe("getRussianPluralForm", () => {
+describe("getPluralForm", () => {
   describe("hours forms", () => {
     const hourForms = ["час", "часа", "часов"] as const;
 
@@ -57,6 +57,18 @@ describe("getRussianPluralForm", () => {
       expect(getPluralForm(-5, hourForms)).toBe("часов");
       expect(getPluralForm(-11, hourForms)).toBe("часов");
       expect(getPluralForm(-21, hourForms)).toBe("час");
+    });
+
+    it("should use genitive plural for decimal numbers", () => {
+      expect(getPluralForm(1.1, hourForms)).toBe("часов");
+      expect(getPluralForm(1.2, hourForms)).toBe("часов");
+      expect(getPluralForm(1.3, hourForms)).toBe("часов");
+      expect(getPluralForm(1.4, hourForms)).toBe("часов");
+      expect(getPluralForm(1.5, hourForms)).toBe("часов");
+      expect(getPluralForm(2.5, hourForms)).toBe("часов");
+      expect(getPluralForm(5.5, hourForms)).toBe("часов");
+      expect(getPluralForm(0.5, hourForms)).toBe("часов");
+      expect(getPluralForm(21.5, hourForms)).toBe("часов");
     });
   });
 

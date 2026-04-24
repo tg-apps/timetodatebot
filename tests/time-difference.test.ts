@@ -7,7 +7,7 @@ import {
   setSystemTime,
 } from "bun:test";
 
-import { getTimeDifference } from "#utils";
+import { getTimeDifference } from "#lib/time-difference";
 
 describe("getTimeDifference", () => {
   beforeEach(() => {
