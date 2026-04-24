@@ -145,4 +145,4 @@ function getTimeUntilDate({
   return formatOutput({ day, month, year, ...difference, text });
 }
 
-export { getTimeUntilDate, getTargetYear, getPluralForm };
+export { getTimeUntilDate, getTargetYear, getPluralForm, getTimeDifference };
