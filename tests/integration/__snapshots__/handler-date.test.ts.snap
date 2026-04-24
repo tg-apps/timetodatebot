@@ -1,0 +1,50 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`handle_date should reply with formatted response for valid date 1`] = `
+"До \`31.12.2026\` осталось
+
+\`37\` недель
+\`1\` день
+\`0\` часов
+\`0\` минут
+\`0\` секунд
+
+\`37.142857\` недель
+\`260\` дней
+\`6240\` часов
+\`374400\` минут
+\`22464000\` секунд"
+`;
+
+exports[`handle_date should reply with formatted response for date with year 1`] = `
+"\`31.12.2025\` наступило
+
+\`15\` недель
+\`0\` дней
+\`0\` часов
+\`0\` минут
+\`0\` секунд
+
+\`15\` недель
+\`105\` дней
+\`2520\` часов
+\`151200\` минут
+\`9072000\` секунд
+
+назад"
+`;
+
+exports[`handle_date should reply with usage message for invalid input 1`] = `
+"Пример использования команды
+\`/date 31 12\`"
+`;
+
+exports[`handle_date should reply with usage message for empty input 1`] = `
+"Пример использования команды
+\`/date 31 12\`"
+`;
+
+exports[`handle_date should reply with usage message for single number 1`] = `
+"Пример использования команды
+\`/date 31 12\`"
+`;
