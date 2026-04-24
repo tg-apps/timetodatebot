@@ -4,7 +4,7 @@ import { getArgsFromStringWithSchema } from "#lib/get-args";
 import { integer, tuple, union } from "#schemas";
 import { getTimeUntilDate } from "#utils";
 
-function getDateResponseFromContext(input: string) {
+export function getDateResponseFromContext(input: string) {
   const args = getArgsFromStringWithSchema({
     schema: union([
       tuple([integer, integer]),

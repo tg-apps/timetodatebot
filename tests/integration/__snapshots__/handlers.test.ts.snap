@@ -1,0 +1,51 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`handle_summer should reply with countdown to summer 1`] = `
+"До лета осталось
+
+\`6\` недель
+\`5\` дней
+\`0\` часов
+\`0\` минут
+\`0\` секунд
+
+\`6.714286\` недель
+\`47\` дней
+\`1128\` часов
+\`67680\` минут
+\`4060800\` секунд"
+`;
+
+exports[`handle_start should reply with help message 1`] = `
+"*Список команд*
+
+/newyear \\- Новый год
+/christmas \\- Рождество
+/summer \\- Лето
+
+/birthday \\- День рождения
+
+/date \\- Любая дата
+/customdate \\- Установить свою дату
+
+/help \\- Помощь
+
+"
+`;
+
+exports[`handle_help should reply with help message 1`] = `
+"*Список команд*
+
+/newyear \\- Новый год
+/christmas \\- Рождество
+/summer \\- Лето
+
+/birthday \\- День рождения
+
+/date \\- Любая дата
+/customdate \\- Установить свою дату
+
+/help \\- Помощь
+
+"
+`;

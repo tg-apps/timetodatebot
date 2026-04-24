@@ -6,6 +6,8 @@
     "#constants": "./src/constants.ts",
     "#db": "./src/db/index.ts",
     "#db/schema": "./src/db/schema.ts",
+    "#handlers": "./src/handlers/index.ts",
+    "#handlers/*": "./src/handlers/*.ts",
     "#lib/*": "./src/lib/*.ts",
     "#utils": "./src/lib/utils.ts",
     "#schemas": "./src/schemas/index.ts"
