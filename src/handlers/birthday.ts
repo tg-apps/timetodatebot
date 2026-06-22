@@ -59,7 +59,8 @@ async function getBirthdayResponseFromInput(
   const birthday = await getUserBirthday(userId);
   if (!birthday)
     return "День рождения не установлен\nУстановите его командой `/birthday 31 12`";
-  const year = getTargetYear(birthday);
+  const now = new Date();
+  const year = getTargetYear(now, birthday);
   const { day, month } = birthday;
   return getTimeUntilDate({ day, month, year, text: "твоего дня рождения" });
 }

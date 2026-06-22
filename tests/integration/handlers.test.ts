@@ -18,6 +18,8 @@ import {
   handle_help,
 } from "#handlers";
 
+const defaultDate = new Date("2026-04-15T00:00:00");
+
 describe("handle_newyear", () => {
   let capturedReply: string | undefined;
 
@@ -28,7 +30,7 @@ describe("handle_newyear", () => {
   } as unknown as CommandContext<Context>;
 
   beforeEach(() => {
-    setSystemTime(new Date("2026-04-15T00:00:00"));
+    setSystemTime(defaultDate);
     capturedReply = undefined;
   });
 
@@ -40,6 +42,7 @@ describe("handle_newyear", () => {
     await handle_newyear(mockContext);
     expect(capturedReply).toContain("Нового года");
     expect(capturedReply).toContain("недель");
+    expect(capturedReply).toMatchSnapshot();
   });
 });
 
@@ -53,7 +56,7 @@ describe("handle_christmas", () => {
   } as unknown as CommandContext<Context>;
 
   beforeEach(() => {
-    setSystemTime(new Date("2026-04-15T00:00:00"));
+    setSystemTime(defaultDate);
     capturedReply = undefined;
   });
 
@@ -65,6 +68,7 @@ describe("handle_christmas", () => {
     await handle_christmas(mockContext);
     expect(capturedReply).toContain("Рождества");
     expect(capturedReply).toContain("недель");
+    expect(capturedReply).toMatchSnapshot();
   });
 });
 
@@ -78,7 +82,7 @@ describe("handle_summer", () => {
   } as unknown as CommandContext<Context>;
 
   beforeEach(() => {
-    setSystemTime(new Date("2026-04-15T00:00:00"));
+    setSystemTime(defaultDate);
     capturedReply = undefined;
   });
 
