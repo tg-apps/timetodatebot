@@ -1,0 +1,56 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`handle_birthday should handle a non-existent user 1`] = `
+"День рождения не установлен
+Установите его командой \`/birthday 31 12\`"
+`;
+
+exports[`handle_birthday should handle adding user's birthday and getting it 1`] = `"День рождения установлен на \`25.04\`"`;
+
+exports[`handle_birthday should handle adding user's birthday and getting it 2`] = `
+"До твоего дня рождения осталось
+
+\`1\` неделя
+\`3\` дня
+\`0\` часов
+\`0\` минут
+\`0\` секунд
+
+\`1.42857\` недель
+\`10\` дней
+\`240\` часов
+\`14400\` минут
+\`864000\` секунд"
+`;
+
+exports[`handle_birthday should handle adding user's birthday and getting it 3`] = `
+"До твоего дня рождения осталось
+
+\`1\` неделя
+\`0\` дней
+\`10\` часов
+\`34\` минуты
+\`18\` секунд
+
+\`1.06293\` недель
+\`7.44049\` дней
+\`178.572\` часов
+\`10714.3\` минут
+\`642858\` секунд"
+`;
+
+exports[`handle_birthday should handle adding user's birthday and getting it 4`] = `
+"До твоего дня рождения осталось
+
+\`43\` недели
+\`5\` дней
+\`4\` часа
+\`47\` минут
+\`22\` секунды
+
+\`43.742794\` недель
+\`306.19956\` дней
+\`7348.7894\` часов
+\`440927.37\` минут
+\`26455642\` секунды"
+`;

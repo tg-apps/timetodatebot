@@ -5,7 +5,7 @@ import { db } from "#db";
 import { users as usersTable } from "#db/schema";
 import { getArgsFromStringWithSchema } from "#lib/get-args";
 import { integer, tuple, union } from "#schemas";
-import { getTargetYear, getTimeUntilDate } from "#utils";
+import { getTimeUntilDate } from "#utils";
 
 async function getUserBirthday(userId: number) {
   const result = await db.query.users.findFirst({
@@ -59,9 +59,7 @@ async function getBirthdayResponseFromInput(
   const birthday = await getUserBirthday(userId);
   if (!birthday)
     return "День рождения не установлен\nУстановите его командой `/birthday 31 12`";
-  const year = getTargetYear(birthday);
-  const { day, month } = birthday;
-  return getTimeUntilDate({ day, month, year, text: "твоего дня рождения" });
+  return getTimeUntilDate({ ...birthday, text: "твоего дня рождения" });
 }
 
 export async function handle_birthday(

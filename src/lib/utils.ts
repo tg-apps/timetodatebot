@@ -1,20 +1,15 @@
 import { getPluralForm } from "./get-plural-form";
 import { getTimeDifference } from "./time-difference";
 
-function getTargetYear({
-  day,
-  month,
-  now,
-}: {
-  day: number;
-  month: number;
-  now?: Date;
-}): number {
-  now ??= new Date();
+function getTargetYear(
+  now: Date,
+  date: { day: number; month: number },
+): number {
   const currentYear = now.getFullYear();
   const currentMonth = now.getMonth() + 1; // JS months are 0-indexed
   const currentDay = now.getDate();
-  return currentMonth > month || (currentMonth === month && currentDay > day)
+  return currentMonth > date.month ||
+    (currentMonth === date.month && currentDay > date.day)
     ? currentYear + 1
     : currentYear;
 }
@@ -98,8 +93,8 @@ function getTimeUntilDate({
   text?: string;
 }): string {
   const now = new Date();
-  year ??= getTargetYear({ day, month, now });
-  const difference = getTimeDifference({ day, month, year });
+  year ??= getTargetYear(now, { day, month });
+  const difference = getTimeDifference(now, { day, month, year });
   return formatOutput({ day, month, year, ...difference, text });
 }
 

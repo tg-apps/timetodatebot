@@ -1,16 +1,7 @@
-function getTimeDifference({
-  day,
-  month,
-  year,
-  now,
-}: {
-  day: number;
-  month: number;
-  year: number;
-  now?: Date;
-}) {
-  now ??= new Date();
-
+function getTimeDifference(
+  now: Date,
+  { day, month, year }: { day: number; month: number; year: number },
+) {
   const targetDate = new Date(year, month - 1, day); // JS months are 0-indexed
 
   const isPast = targetDate < now;
