@@ -16,7 +16,6 @@ describe("handle_date", () => {
   let capturedReply: string | undefined;
 
   const mockContext = {
-    match: "",
     reply: mock(async (text: string) => {
       capturedReply = text;
     }),

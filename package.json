@@ -13,7 +13,7 @@
     "#schemas": "./src/schemas/index.ts"
   },
   "scripts": {
-    "test": "bun test",
+    "test": "DB_FILE_NAME='' bun test",
     "format": "oxfmt",
     "lint": "oxlint",
     "dev": "NODE_ENV=development bun run ./src/index.ts",

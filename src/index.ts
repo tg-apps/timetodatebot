@@ -3,7 +3,7 @@ import { Bot } from "grammy";
 
 import * as handler from "./handlers";
 
-const TOKEN = process.env["TOKEN"];
+const TOKEN = process.env.TOKEN;
 
 if (!TOKEN) {
   throw new Error("Missing TOKEN env variable");
