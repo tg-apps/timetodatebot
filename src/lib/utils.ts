@@ -75,7 +75,7 @@ function formatOutput({
     `\`${intSeconds}\` ${getPluralForm(intSeconds, ["секунда", "секунды", "секунд"])}`;
 
   if (isPast) {
-    return output + "\n\nназад";
+    return `${output}\n\nназад`;
   }
 
   return output;
