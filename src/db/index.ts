@@ -11,14 +11,14 @@ const sqlite = new Database(DB_FILE_NAME);
 sqlite.run(`
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
   user_id integer NOT NULL,
   day integer NOT NULL,
   month integer NOT NULL,
   UNIQUE(user_id)
 );
 
-CREATE TABLE custom_dates (
+CREATE TABLE IF NOT EXISTS custom_dates (
   user_id integer PRIMARY KEY NOT NULL,
   day integer NOT NULL,
   month integer NOT NULL,
