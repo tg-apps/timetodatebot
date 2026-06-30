@@ -22,7 +22,7 @@
   "dependencies": {
     "@grammyjs/runner": "2.0.3",
     "drizzle-orm": "0.45.2",
-    "grammy": "1.43.0",
+    "grammy": "1.44.0",
     "minizod": "0.0.3"
   },
   "devDependencies": {
