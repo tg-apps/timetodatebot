@@ -1,17 +1,11 @@
-import {
-  describe,
-  it,
-  expect,
-  beforeEach,
-  afterEach,
-  setSystemTime,
-  mock,
-} from "bun:test";
+import { describe, it, expect, beforeEach, mock } from "bun:test";
 
 import type { CommandContext, Context } from "grammy";
 import type { User } from "grammy/types";
 
 import { handle_birthday } from "#handlers/birthday";
+
+import { setNow } from "./clock";
 
 describe("handle_birthday", () => {
   let capturedReply: string | undefined;
@@ -24,12 +18,8 @@ describe("handle_birthday", () => {
   } as unknown as CommandContext<Context> & { from: User };
 
   beforeEach(() => {
-    setSystemTime(new Date("2026-04-15T00:00:00"));
+    setNow(Temporal.ZonedDateTime.from("2026-04-15T00:00:00[UTC]"));
     capturedReply = undefined;
-  });
-
-  afterEach(() => {
-    setSystemTime();
   });
 
   it("should handle a non-existent user", async () => {
@@ -48,11 +38,11 @@ describe("handle_birthday", () => {
     await handle_birthday(mockContext);
     expect(capturedReply).toMatchSnapshot();
 
-    setSystemTime(new Date("2026-04-17T13:25:42"));
+    setNow(Temporal.ZonedDateTime.from("2026-04-17T13:25:42[UTC]"));
     await handle_birthday(mockContext);
     expect(capturedReply).toMatchSnapshot();
 
-    setSystemTime(new Date("2026-06-22T19:12:38"));
+    setNow(Temporal.ZonedDateTime.from("2026-06-22T19:12:38[UTC]"));
     await handle_birthday(mockContext);
     expect(capturedReply).toMatchSnapshot();
   });

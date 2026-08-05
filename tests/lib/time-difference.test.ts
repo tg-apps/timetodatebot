@@ -3,7 +3,7 @@ import { describe, it, expect } from "bun:test";
 import { getTimeDifference } from "#lib/time-difference";
 
 describe("getTimeDifference", () => {
-  const now = new Date("2026-04-15T00:00:00");
+  const now = Temporal.ZonedDateTime.from("2026-04-15T00:00:00[UTC]");
 
   it("should return isPast false for future date", () => {
     const result = getTimeDifference(now, { day: 16, month: 4, year: 2026 });
@@ -33,7 +33,7 @@ describe("getTimeDifference", () => {
   });
 
   it("should calculate hours, minutes, seconds correctly for non-zero values", () => {
-    const now = new Date("2026-04-15T14:30:45");
+    const now = Temporal.ZonedDateTime.from("2026-04-15T14:30:45[UTC]");
     const result = getTimeDifference(now, { day: 15, month: 4, year: 2026 });
     expect(result.hours).toBe(14);
     expect(result.minutes).toBe(30);
@@ -51,7 +51,7 @@ describe("getTimeDifference", () => {
   });
 
   it("should handle 366-day future offset across Feb 29 (leap year)", () => {
-    const now = new Date("2027-04-15T00:00:00");
+    const now = Temporal.ZonedDateTime.from("2027-04-15T00:00:00[UTC]");
     const result = getTimeDifference(now, { day: 15, month: 4, year: 2028 });
     expect(result.totalSeconds).toBe(86400 * 366);
   });
@@ -71,5 +71,11 @@ describe("getTimeDifference", () => {
     const result = getTimeDifference(now, { day: 8, month: 4, year: 2026 });
     expect(result.weeks).toBe(1);
     expect(result.days).toBe(0);
+  });
+
+  it("should throw for an impossible date", () => {
+    expect(() =>
+      getTimeDifference(now, { day: 30, month: 2, year: 2026 }),
+    ).toThrow(RangeError);
   });
 });

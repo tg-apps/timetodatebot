@@ -1,12 +1,4 @@
-import {
-  describe,
-  it,
-  expect,
-  beforeEach,
-  afterEach,
-  setSystemTime,
-  mock,
-} from "bun:test";
+import { describe, it, expect, beforeEach, mock } from "bun:test";
 
 import type { CommandContext, Context } from "grammy";
 
@@ -18,7 +10,11 @@ import {
   handle_help,
 } from "#handlers";
 
-const defaultDate = new Date("2026-04-15T00:00:00");
+import { setNow } from "./clock";
+
+beforeEach(() => {
+  setNow(Temporal.ZonedDateTime.from("2026-04-15T00:00:00[UTC]"));
+});
 
 describe("handle_newyear", () => {
   let capturedReply: string | undefined;
@@ -28,15 +24,6 @@ describe("handle_newyear", () => {
       capturedReply = text;
     }),
   } as unknown as CommandContext<Context>;
-
-  beforeEach(() => {
-    setSystemTime(defaultDate);
-    capturedReply = undefined;
-  });
-
-  afterEach(() => {
-    setSystemTime();
-  });
 
   it("should reply with countdown to new year", async () => {
     await handle_newyear(mockContext);
@@ -55,15 +42,6 @@ describe("handle_christmas", () => {
     }),
   } as unknown as CommandContext<Context>;
 
-  beforeEach(() => {
-    setSystemTime(defaultDate);
-    capturedReply = undefined;
-  });
-
-  afterEach(() => {
-    setSystemTime();
-  });
-
   it("should reply with countdown to christmas", async () => {
     await handle_christmas(mockContext);
     expect(capturedReply).toContain("Рождества");
@@ -80,15 +58,6 @@ describe("handle_summer", () => {
       capturedReply = text;
     }),
   } as unknown as CommandContext<Context>;
-
-  beforeEach(() => {
-    setSystemTime(defaultDate);
-    capturedReply = undefined;
-  });
-
-  afterEach(() => {
-    setSystemTime();
-  });
 
   it("should reply with countdown to summer", async () => {
     await handle_summer(mockContext);

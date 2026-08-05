@@ -2,16 +2,13 @@ import { getPluralForm } from "./get-plural-form";
 import { getTimeDifference } from "./time-difference";
 
 function getTargetYear(
-  now: Date,
+  now: Temporal.PlainDate,
   date: { day: number; month: number },
 ): number {
-  const currentYear = now.getFullYear();
-  const currentMonth = now.getMonth() + 1; // JS months are 0-indexed
-  const currentDay = now.getDate();
-  return currentMonth > date.month ||
-    (currentMonth === date.month && currentDay > date.day)
-    ? currentYear + 1
-    : currentYear;
+  const thisYear = new Temporal.PlainDate(now.year, date.month, date.day);
+  return Temporal.PlainDate.compare(thisYear, now) < 0
+    ? now.year + 1
+    : now.year;
 }
 
 function formatOutput({
@@ -81,21 +78,27 @@ function formatOutput({
   return output;
 }
 
-function getTimeUntilDate({
-  day,
-  month,
-  year,
-  text,
-}: {
-  day: number;
-  month: number;
-  year?: number | null;
-  text?: string;
-}): string {
-  const now = new Date();
-  year ??= getTargetYear(now, { day, month });
-  const difference = getTimeDifference(now, { day, month, year });
-  return formatOutput({ day, month, year, ...difference, text });
+function getTimeUntilDate(
+  {
+    day,
+    month,
+    year,
+    text,
+  }: {
+    day: number;
+    month: number;
+    year?: number | null;
+    text?: string;
+  },
+  now: Temporal.ZonedDateTime = Temporal.Now.zonedDateTimeISO(),
+): string {
+  try {
+    year ??= getTargetYear(now.toPlainDate(), { day, month });
+    const difference = getTimeDifference(now, { day, month, year });
+    return formatOutput({ day, month, year, ...difference, text });
+  } catch {
+    return "Некорректная дата";
+  }
 }
 
 export { getTimeUntilDate, getTargetYear };

@@ -3,7 +3,7 @@ import { describe, it, expect } from "bun:test";
 import { getTargetYear } from "#lib/utils";
 
 describe("getTargetYear", () => {
-  const now = new Date("2026-04-15T00:00:00");
+  const now = Temporal.PlainDate.from("2026-04-15");
 
   it("should return current year when date is in future", () => {
     expect(getTargetYear(now, { day: 20, month: 4 })).toBe(2026);
