@@ -9,7 +9,7 @@ exports[`handle_newyear should reply with countdown to new year 1`] = `
 \`0\` минут
 \`0\` секунд
 
-\`37.285714\` недель
+\`37.285714\` недели
 \`261\` день
 \`6264\` часа
 \`375840\` минут
@@ -25,7 +25,7 @@ exports[`handle_christmas should reply with countdown to christmas 1`] = `
 \`0\` минут
 \`0\` секунд
 
-\`38.142857\` недель
+\`38.142857\` недели
 \`267\` дней
 \`6408\` часов
 \`384480\` минут
@@ -41,7 +41,7 @@ exports[`handle_summer should reply with countdown to summer 1`] = `
 \`0\` минут
 \`0\` секунд
 
-\`6.714286\` недель
+\`6.714286\` недели
 \`47\` дней
 \`1128\` часов
 \`67680\` минут

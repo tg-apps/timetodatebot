@@ -9,7 +9,7 @@ exports[`handle_date should reply with formatted response for valid date 1`] = `
 \`0\` минут
 \`0\` секунд
 
-\`37.142857\` недель
+\`37.142857\` недели
 \`260\` дней
 \`6240\` часов
 \`374400\` минут

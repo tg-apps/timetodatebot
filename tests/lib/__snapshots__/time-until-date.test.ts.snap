@@ -9,7 +9,7 @@ exports[`getTimeUntilDate should return formatted output for future date 1`] = `
 \`0\` минут
 \`0\` секунд
 
-\`0.14286\` недель
+\`0.14286\` недели
 \`1\` день
 \`24\` часа
 \`1440\` минут
@@ -25,7 +25,7 @@ exports[`getTimeUntilDate should return formatted output for past date 1`] = `
 \`0\` минут
 \`0\` секунд
 
-\`0.14286\` недель
+\`0.14286\` недели
 \`1\` день
 \`24\` часа
 \`1440\` минут
@@ -43,7 +43,7 @@ exports[`getTimeUntilDate should return formatted output with custom text 1`] = 
 \`0\` минут
 \`0\` секунд
 
-\`0.14286\` недель
+\`0.14286\` недели
 \`1\` день
 \`24\` часа
 \`1440\` минут
@@ -59,7 +59,7 @@ exports[`getTimeUntilDate should auto-detect target year when not provided 1`] =
 \`0\` минут
 \`0\` секунд
 
-\`0.14286\` недель
+\`0.14286\` недели
 \`1\` день
 \`24\` часа
 \`1440\` минут
@@ -75,7 +75,7 @@ exports[`getTimeUntilDate should use next year when date is in past (auto-detect
 \`0\` минут
 \`0\` секунд
 
-\`2.428571\` недель
+\`2.428571\` недели
 \`17\` дней
 \`408\` часов
 \`24480\` минут
@@ -91,7 +91,7 @@ exports[`getTimeUntilDate should return formatted output for far future date 1`]
 \`0\` минут
 \`0\` секунд
 
-\`37.285714\` недель
+\`37.285714\` недели
 \`261\` день
 \`6264\` часа
 \`375840\` минут
@@ -123,10 +123,10 @@ exports[`getTimeUntilDate should handle afternoon time 14:30:45 1`] = `
 \`29\` минут
 \`15\` секунд
 
-\`0.056473\` недель
-\`0.39531\` дней
-\`9.4875\` часов
-\`569.25\` минут
+\`0.056473\` недели
+\`0.39531\` дня
+\`9.4875\` часа
+\`569.25\` минуты
 \`34155\` секунд"
 `;
 
@@ -142,7 +142,7 @@ exports[`getTimeUntilDate should handle late evening time 23:59:59 1`] = `
 \`0.000002\` недель
 \`0.00001\` дней
 \`0.0003\` часов
-\`0.02\` минут
+\`0.02\` минуты
 \`1\` секунда"
 `;
 
@@ -155,10 +155,10 @@ exports[`getTimeUntilDate should handle early morning time 01:15:30 1`] = `
 \`15\` минут
 \`30\` секунд
 
-\`0.007490\` недель
-\`0.05243\` дней
-\`1.258\` часов
-\`75.50\` минут
+\`0.007490\` недели
+\`0.05243\` дня
+\`1.258\` часа
+\`75.50\` минуты
 \`4530\` секунд
 
 назад"
@@ -173,8 +173,8 @@ exports[`getTimeUntilDate should handle midday time for past date calculation 1`
 \`0\` минут
 \`0\` секунд
 
-\`0.214286\` недель
-\`1.50000\` дней
+\`0.214286\` недели
+\`1.50000\` дня
 \`36\` часов
 \`2160\` минут
 \`129600\` секунд
@@ -207,8 +207,8 @@ exports[`getTimeUntilDate more than one week difference should handle 2 weeks ah
 \`0\` минут
 \`0\` секунд
 
-\`1.928571\` недель
-\`13.50000\` дней
+\`1.928571\` недели
+\`13.50000\` дня
 \`324\` часа
 \`19440\` минут
 \`1166400\` секунд"
@@ -223,7 +223,7 @@ exports[`getTimeUntilDate more than one week difference should handle 1 month ah
 \`0\` минут
 \`0\` секунд
 
-\`4.285714\` недель
+\`4.285714\` недели
 \`30\` дней
 \`720\` часов
 \`43200\` минут
@@ -239,9 +239,9 @@ exports[`getTimeUntilDate more than one week difference should handle 1 month ah
 \`30\` минут
 \`0\` секунд
 
-\`4.175595\` недель
-\`29.22917\` дней
-\`701.5000\` часов
+\`4.175595\` недели
+\`29.22917\` дня
+\`701.5000\` часа
 \`42090\` минут
 \`2525400\` секунд"
 `;
@@ -271,10 +271,10 @@ exports[`getTimeUntilDate more than one week difference should handle 3 months a
 \`14\` минут
 \`30\` секунд
 
-\`12.87049\` недель
-\`90.09340\` дней
-\`2162.242\` часов
-\`129734.5\` минут
+\`12.87049\` недели
+\`90.09340\` дня
+\`2162.242\` часа
+\`129734.5\` минуты
 \`7784070\` секунд"
 `;
 
@@ -287,7 +287,7 @@ exports[`getTimeUntilDate more than one week difference should handle 1 year ahe
 \`0\` минут
 \`0\` секунд
 
-\`52.142857\` недель
+\`52.142857\` недели
 \`365\` дней
 \`8760\` часов
 \`525600\` минут
@@ -303,8 +303,8 @@ exports[`getTimeUntilDate more than one week difference should handle 1 year ahe
 \`0\` минут
 \`0\` секунд
 
-\`52.095238\` недель
-\`364.66667\` дней
+\`52.095238\` недели
+\`364.66667\` дня
 \`8752\` часа
 \`525120\` минут
 \`31507200\` секунд"
