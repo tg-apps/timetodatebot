@@ -74,7 +74,7 @@ function getTimeUntilDate(
 ): string {
   try {
     year ??= getTargetYear(now.toPlainDate(), { day, month });
-    const date = new Temporal.PlainDate(day, month, year);
+    const date = new Temporal.PlainDate(year, month, day);
     const duration = getTimeDifference(now, date);
     return formatOutput({ date, duration, now, text });
   } catch {
