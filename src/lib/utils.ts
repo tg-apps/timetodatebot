@@ -1,101 +1,66 @@
-import { getPluralForm } from "./get-plural-form";
+import { getTargetYear } from "./target-year";
 import { getTimeDifference } from "./time-difference";
-
-function getTargetYear(
-  now: Date,
-  date: { day: number; month: number },
-): number {
-  const currentYear = now.getFullYear();
-  const currentMonth = now.getMonth() + 1; // JS months are 0-indexed
-  const currentDay = now.getDate();
-  return currentMonth > date.month ||
-    (currentMonth === date.month && currentDay > date.day)
-    ? currentYear + 1
-    : currentYear;
-}
+import { getUnitName } from "./unit-name";
+import type { Unit } from "./unit-name";
 
 function formatOutput({
-  day,
-  month,
-  year,
-  isPast,
-  weeks,
-  days,
-  hours,
-  minutes,
-  seconds,
-  totalSeconds,
+  date,
+  duration,
+  now,
   text,
 }: {
-  day: number;
-  month: number;
-  year: number;
-  isPast: boolean;
-  weeks: number;
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  totalSeconds: number;
+  date: Temporal.PlainDate;
+  duration: Temporal.Duration;
+  now: Temporal.ZonedDateTime;
   text?: string;
 }): string {
-  const dateStr = `${day.toString().padStart(2, "0")}.${month
-    .toString()
-    .padStart(2, "0")}.${year}`;
-
-  text ??= `\`${dateStr}\``;
-  const label = isPast ? `${text} наступило` : `До ${text} осталось`;
-
-  const intSeconds = Math.floor(totalSeconds);
-  const digits = intSeconds.toString().length;
-  const precision = digits - 1;
+  const d = duration.abs();
+  const seconds = Math.floor(d.total({ unit: "second", relativeTo: now }));
+  const precision = seconds.toString().length;
 
   function format(num: number): string {
-    if (precision < 0) return num.toString();
-    const str = num.toPrecision(precision + 1);
-    return str.replace(/\.0+$/, ""); // Remove trailing zeros and decimal if no fraction
+    return num.toPrecision(precision).replace(/\.0+$/, "");
   }
 
-  const weeksTotal = totalSeconds / (7 * 24 * 60 * 60);
-  const daysTotal = totalSeconds / (24 * 60 * 60);
-  const hoursTotal = totalSeconds / (60 * 60);
-  const minutesTotal = totalSeconds / 60;
+  const line = (value: number, unit: Unit) =>
+    `\`${format(value)}\` ${getUnitName(value, unit)}`;
 
-  const output =
-    `${label}\n\n` +
-    `\`${weeks}\` ${getPluralForm(weeks, ["неделя", "недели", "недель"])}\n` +
-    `\`${days}\` ${getPluralForm(days, ["день", "дня", "дней"])}\n` +
-    `\`${hours}\` ${getPluralForm(hours, ["час", "часа", "часов"])}\n` +
-    `\`${minutes}\` ${getPluralForm(minutes, ["минута", "минуты", "минут"])}\n` +
-    `\`${seconds}\` ${getPluralForm(seconds, ["секунда", "секунды", "секунд"])}\n\n` +
-    `\`${format(weeksTotal)}\` ${getPluralForm(weeksTotal, ["неделя", "недели", "недель"])}\n` +
-    `\`${format(daysTotal)}\` ${getPluralForm(daysTotal, ["день", "дня", "дней"])}\n` +
-    `\`${format(hoursTotal)}\` ${getPluralForm(hoursTotal, ["час", "часа", "часов"])}\n` +
-    `\`${format(minutesTotal)}\` ${getPluralForm(minutesTotal, ["минута", "минуты", "минут"])}\n` +
-    `\`${intSeconds}\` ${getPluralForm(intSeconds, ["секунда", "секунды", "секунд"])}`;
+  const units = [
+    [d.weeks, "week"],
+    [d.days, "day"],
+    [d.hours, "hour"],
+    [d.minutes, "minute"],
+    [d.seconds, "second"],
+  ] as const;
 
-  if (isPast) {
-    return `${output}\n\nназад`;
+  const total = (unit: Unit) =>
+    unit === "second" ? seconds : d.total({ unit, relativeTo: now });
+
+  const lines = units.map(([value, unit]) => line(value, unit));
+  const totals = units.map(([, unit]) => line(total(unit), unit));
+
+  const dateStr = date.toLocaleString("ru-RU");
+  text ??= `\`${dateStr}\``;
+  const isPast = duration.sign < 0;
+  const label = isPast ? `${text} наступило` : `До ${text} осталось`;
+  const output = `${label}\n\n${lines.join("\n")}\n\n${totals.join("\n")}`;
+
+  return isPast ? `${output}\n\nназад` : output;
+}
+
+function getTimeUntilDate(
+  opts: { day: number; month: number; year?: number | null; text?: string },
+  now: Temporal.ZonedDateTime = Temporal.Now.zonedDateTimeISO(),
+): string {
+  try {
+    const { day, month, text } = opts;
+    const year = opts.year ?? getTargetYear(now.toPlainDate(), { day, month });
+    const date = Temporal.PlainDate.from({ day, month, year });
+    const duration = getTimeDifference(now, date);
+    return formatOutput({ date, duration, now, text });
+  } catch {
+    return "Некорректная дата";
   }
-
-  return output;
 }
 
-function getTimeUntilDate({
-  day,
-  month,
-  year,
-  text,
-}: {
-  day: number;
-  month: number;
-  year?: number | null;
-  text?: string;
-}): string {
-  const now = new Date();
-  year ??= getTargetYear(now, { day, month });
-  const difference = getTimeDifference(now, { day, month, year });
-  return formatOutput({ day, month, year, ...difference, text });
-}
-
-export { getTimeUntilDate, getTargetYear };
+export { getTimeUntilDate };

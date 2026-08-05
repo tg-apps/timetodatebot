@@ -1,16 +1,10 @@
-import {
-  describe,
-  it,
-  expect,
-  beforeEach,
-  afterEach,
-  setSystemTime,
-  mock,
-} from "bun:test";
+import { describe, it, expect, mock, beforeEach } from "bun:test";
 
 import type { CommandContext, Context } from "grammy";
 
 import { handle_date } from "#handlers/date";
+
+import { setNow } from "./clock";
 
 describe("handle_date", () => {
   let capturedReply: string | undefined;
@@ -22,12 +16,8 @@ describe("handle_date", () => {
   } as unknown as CommandContext<Context>;
 
   beforeEach(() => {
-    setSystemTime(new Date("2026-04-15T00:00:00"));
+    setNow(Temporal.ZonedDateTime.from("2026-04-15T00:00:00[UTC]"));
     capturedReply = undefined;
-  });
-
-  afterEach(() => {
-    setSystemTime();
   });
 
   it("should reply with formatted response for valid date", async () => {

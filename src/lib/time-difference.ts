@@ -1,31 +1,9 @@
 function getTimeDifference(
-  now: Date,
-  { day, month, year }: { day: number; month: number; year: number },
-) {
-  const targetDate = new Date(year, month - 1, day); // JS months are 0-indexed
-
-  const isPast = targetDate < now;
-  const totalMs = Math.abs(now.getTime() - targetDate.getTime());
-  const totalSeconds = totalMs / 1000;
-
-  const totalDays = Math.floor(totalSeconds / 86400);
-  const weeks = Math.floor(totalDays / 7);
-  const days = totalDays % 7;
-
-  const secondsInDay = totalSeconds % 86400;
-  const hours = Math.floor(secondsInDay / 3600);
-  const minutes = Math.floor((secondsInDay % 3600) / 60);
-  const seconds = Math.floor((secondsInDay % 3600) % 60);
-
-  return {
-    isPast,
-    weeks,
-    days,
-    hours,
-    minutes,
-    seconds,
-    totalSeconds,
-  } as const;
+  now: Temporal.ZonedDateTime,
+  date: Temporal.PlainDate,
+): Temporal.Duration {
+  const target = date.toZonedDateTime(now.timeZoneId);
+  return now.until(target, { largestUnit: "week" });
 }
 
 export { getTimeDifference };
