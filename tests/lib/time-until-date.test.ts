@@ -172,4 +172,22 @@ describe("getTimeUntilDate", () => {
     );
     expect(result).toBe("Некорректная дата");
   });
+
+  describe("leap year edge cases", () => {
+    it("should handle explicit Feb 29 in a leap year", () => {
+      const result = getTimeUntilDate(
+        { day: 29, month: 2, year: 2028 },
+        now("2028-02-01T00:00:00"),
+      );
+      expect(result).toMatchSnapshot();
+    });
+
+    it("should return error message for Feb 29 on non-leap year if year is explicitly specified", () => {
+      const result = getTimeUntilDate(
+        { day: 29, month: 2, year: 2026 },
+        now("2026-02-01T00:00:00"),
+      );
+      expect(result).toBe("Некорректная дата");
+    });
+  });
 });

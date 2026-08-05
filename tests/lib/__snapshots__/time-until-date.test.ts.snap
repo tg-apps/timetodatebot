@@ -309,3 +309,19 @@ exports[`getTimeUntilDate more than one week difference should handle 1 year ahe
 \`525120\` минут
 \`31507200\` секунд"
 `;
+
+exports[`getTimeUntilDate leap year edge cases should handle explicit Feb 29 in a leap year 1`] = `
+"До \`29.02.2028\` осталось
+
+\`4\` недели
+\`0\` дней
+\`0\` часов
+\`0\` минут
+\`0\` секунд
+
+\`4\` недели
+\`28\` дней
+\`672\` часа
+\`40320\` минут
+\`2419200\` секунд"
+`;

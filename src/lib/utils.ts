@@ -6,8 +6,7 @@ function getTargetYear(
   now: Temporal.PlainDate,
   date: { day: number; month: number },
 ): number {
-  const thisYear = new Temporal.PlainDate(now.year, date.month, date.day);
-  return Temporal.PlainDate.compare(thisYear, now) < 0
+  return Temporal.PlainDate.compare(now.with(date), now) < 0
     ? now.year + 1
     : now.year;
 }
