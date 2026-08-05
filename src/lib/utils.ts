@@ -23,7 +23,7 @@ function formatOutput({
   text?: string;
 }): string {
   const d = duration.abs();
-  const seconds = Math.floor(d.total({ unit: "second" }));
+  const seconds = Math.floor(d.total({ unit: "second", relativeTo: now }));
   const precision = seconds.toString().length - 1;
 
   function format(num: number): string {
@@ -35,8 +35,8 @@ function formatOutput({
     `\`${format(value)}\` ${getUnitName(value, unit)}`;
 
   const units = [
-    [Math.floor(d.days / 7), "week"],
-    [d.days % 7, "day"],
+    [d.weeks, "week"],
+    [d.days, "day"],
     [d.hours, "hour"],
     [d.minutes, "minute"],
     [d.seconds, "second"],
