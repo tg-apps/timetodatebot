@@ -1,15 +1,7 @@
+import { getTargetYear } from "./target-year";
 import { getTimeDifference } from "./time-difference";
 import { getUnitName } from "./unit-name";
 import type { Unit } from "./unit-name";
-
-function getTargetYear(
-  now: Temporal.PlainDate,
-  date: { day: number; month: number },
-): number {
-  return Temporal.PlainDate.compare(now.with(date), now) < 0
-    ? now.year + 1
-    : now.year;
-}
 
 function formatOutput({
   date,
@@ -57,22 +49,13 @@ function formatOutput({
 }
 
 function getTimeUntilDate(
-  {
-    day,
-    month,
-    year,
-    text,
-  }: {
-    day: number;
-    month: number;
-    year?: number | null;
-    text?: string;
-  },
+  opts: { day: number; month: number; year?: number | null; text?: string },
   now: Temporal.ZonedDateTime = Temporal.Now.zonedDateTimeISO(),
 ): string {
   try {
-    year ??= getTargetYear(now.toPlainDate(), { day, month });
-    const date = new Temporal.PlainDate(year, month, day);
+    const { day, month, text } = opts;
+    const year = opts.year ?? getTargetYear(now.toPlainDate(), { day, month });
+    const date = Temporal.PlainDate.from({ day, month, year });
     const duration = getTimeDifference(now, date);
     return formatOutput({ date, duration, now, text });
   } catch {
@@ -80,4 +63,4 @@ function getTimeUntilDate(
   }
 }
 
-export { getTimeUntilDate, getTargetYear };
+export { getTimeUntilDate };

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "bun:test";
 
-import { getTargetYear } from "#lib/utils";
+import { getTargetYear } from "#lib/target-year";
 
 describe("getTargetYear", () => {
   const now = Temporal.PlainDate.from("2026-04-15");
