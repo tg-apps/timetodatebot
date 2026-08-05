@@ -27,7 +27,6 @@ function formatOutput({
   const precision = seconds.toString().length - 1;
 
   function format(num: number): string {
-    if (precision < 0) return num.toString();
     return num.toPrecision(precision + 1).replace(/\.0+$/, "");
   }
 
