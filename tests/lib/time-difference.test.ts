@@ -73,6 +73,17 @@ describe("getTimeDifference", () => {
     expect(result.days).toBe(0);
   });
 
+  it("should resolve target to 01:00 when local midnight is skipped by DST", () => {
+    const now = Temporal.ZonedDateTime.from(
+      "2026-09-05T23:00:00[America/Santiago]",
+    );
+    const result = getTimeDifference(now, { day: 6, month: 9, year: 2026 });
+    expect(result.isPast).toBe(false);
+    expect(result.hours).toBe(2);
+    expect(result.minutes).toBe(0);
+    expect(result.totalSeconds).toBe(7200);
+  });
+
   it("should throw for an impossible date", () => {
     expect(() =>
       getTimeDifference(now, { day: 30, month: 2, year: 2026 }),
