@@ -24,10 +24,10 @@ function formatOutput({
 }): string {
   const d = duration.abs();
   const seconds = Math.floor(d.total({ unit: "second", relativeTo: now }));
-  const precision = seconds.toString().length - 1;
+  const precision = seconds.toString().length;
 
   function format(num: number): string {
-    return num.toPrecision(precision + 1).replace(/\.0+$/, "");
+    return num.toPrecision(precision).replace(/\.0+$/, "");
   }
 
   const line = (value: number, unit: Unit) =>
