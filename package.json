@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@grammyjs/runner": "2.0.3",
-    "drizzle-orm": "0.45.2",
+    "drizzle-orm": "0.45.3",
     "grammy": "1.46.0",
     "minizod": "0.2.1"
   },
