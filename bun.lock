@@ -7,7 +7,7 @@
       "dependencies": {
         "@grammyjs/runner": "2.0.3",
         "drizzle-orm": "0.45.4",
-        "grammy": "1.46.0",
+        "grammy": "1.48.0",
         "minizod": "0.2.1",
       },
       "devDependencies": {
@@ -25,7 +25,7 @@
 
     "@grammyjs/runner": ["@grammyjs/runner@2.0.3", "", { "dependencies": { "abort-controller": "^3.0.0" }, "peerDependencies": { "grammy": "^1.13.1" } }, "sha512-nckmTs1dPWfVQteK9cxqxzE+0m1VRvluLWB8UgFzsjg62w3qthPJt0TYtJBEdG7OedvfQq4vnFAyE6iaMkR42A=="],
 
-    "@grammyjs/types": ["@grammyjs/types@5.0.0", "", {}, "sha512-iq1Qrq1iPKkB8yAa0qSuIURMZOCuqTY5pWy5gHpCeL1oQ+GPadGhw/cDTVE8waJwuCzacUzuIjRv1sESvk7u7A=="],
+    "@grammyjs/types": ["@grammyjs/types@5.2.0", "", {}, "sha512-URnzUV3rBEkEtsHz/+/na8uDJS45eD0vXGM73Ucps2nKpdVfhT4+EyYV8lDftazVRoWN2mT2hjMzMEbSPURBhA=="],
 
     "@oxfmt/binding-android-arm-eabi": ["@oxfmt/binding-android-arm-eabi@0.75.0", "", { "os": "android", "cpu": "arm" }, "sha512-zHJ7LcTN46/5mtoLxsUu14pdF9ixFwDURtmxZ0CeNwqom5qB5NRVqU6o2GRZ7QPdNBW8G6j9UTJzQ+EDevMH0w=="],
 
@@ -169,7 +169,7 @@
 
     "event-target-shim": ["event-target-shim@5.0.1", "", {}, "sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ=="],
 
-    "grammy": ["grammy@1.46.0", "", { "dependencies": { "@grammyjs/types": "5.0.0", "abort-controller": "^3.0.0", "debug": "^4.4.3", "node-fetch": "^2.7.0" } }, "sha512-/8Qw+iisrUdOMk+p2mjEHouMm/BBdBEN1DHh16wiTpRUZkxDG3PxexdjCvR+wvK3LWPdrEvnQbdrwpU954sPhg=="],
+    "grammy": ["grammy@1.48.0", "", { "dependencies": { "@grammyjs/types": "5.2.0", "abort-controller": "^3.0.0", "debug": "^4.4.3", "node-fetch": "^2.7.0" } }, "sha512-/QMphprJxroslpNCFR3SFQwOobjf6uCAmz+OzK94FAVvhQxG/NmKqnkLVhnKkcZ6hruwAFKka6+34Zzg5CjAiQ=="],
 
     "minizod": ["minizod@0.2.1", "", {}, "sha512-aEMHdASHkn1Wmd6DJ+RfqK+0m7xdZJ8IryJa/4r8JGDzBGT31S4eXHrxlOUtTWCHWhzpB6OdenY+UDbvN9WT5A=="],
 
